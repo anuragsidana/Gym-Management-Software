@@ -1,0 +1,91 @@
+
+
+{% extends "members/base.html" %}
+{% block title %}
+Monthly Revenue
+{% endblock %}
+{% load mathfilters %}
+{% block body %}
+
+{% if all_members %}
+<h3>Here is your monthly Revenue</h3>
+{% with name="World" greeting="Hello" %}
+{{name}}
+{% endwith %}
+
+{{ count }}
+
+
+
+<h4>All members</h4>
+<ul>
+    {% for member in all_members %}
+
+
+    <li><a href="{% url 'members:memberDetail' member.id %}">{{ member.member_name}}</a></li>
+
+
+    {% endfor %}
+</ul>
+
+<h4>Members joined this month</h4>
+<ul>
+    {% for member in all_members %}
+
+    {% if member.member_date.month == current_date.month %}
+    <li><a href="{% url 'members:memberDetail' member.id %}">{{ member.member_name}}</a></li>
+    {% endif %}
+
+    {% endfor %}
+</ul>
+
+
+<h4>All FEE</h4>
+<ul>
+    {% for fee in all_fee %}
+
+    <li>By : {{fee.member.member_name}} - {{ fee.fee_amount}} on {{fee.fee_deposit_date}}</li>
+
+    {% endfor %}
+</ul>
+
+
+
+<h4>Fee Deposited this month</h4>
+
+<ul>
+    {{ counter.increment }}
+    {{ counter.count }}
+
+
+    {% for fee in all_fee %}
+    {% if fee.fee_deposit_date.month == current_date.month %}
+    <li>By : {{fee.member.member_name}} - {{ fee.fee_amount}} on {{fee.fee_deposit_date}} </li>
+    {% endif %}
+    {% endfor %}
+
+
+</ul>
+
+
+{% else %}
+<h3>You dont have any Revenue Details</h3>
+{% endif %}
+
+
+<table class="table table-striped table-hover">
+    <tbody>
+       <tr>
+           <td>Col 1</td>
+           <td>Col 2 </td>
+       </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+{% endblock %}
+

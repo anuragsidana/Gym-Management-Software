@@ -1,0 +1,62 @@
+{% extends 'members/base.html' %}
+
+
+<!-- code after videos 29 -->
+{% block body %}
+
+<div class="albums-container container-fluid">
+
+    <!-- Albums -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>{{ batch.batch_title }}</h3>
+        </div>
+            {% if all_albums %}
+                {% for member in batch.member_set.all %}
+                <div class="col-sm-4 col-lg-2">
+                    <div class="thumbnail">
+                        <a href="{% url 'members:memberDetail' member.id %}">
+                            <img  src="{{ member.member_pic.url}}" alt="Image not Loaded"  class="img-responsive" width="600" height="250">
+                        </a>
+                        <div class="caption">
+
+                            <h2>{{ member.member_name }}</h2>
+                            <h4>{{ member.member_date }}</h4>
+
+                            <!-- View Details -->
+                            <a href="{% url 'members:memberDetail' member.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+
+                            <!-- Delete Album -->
+                            <form action="{% url 'members:member-delete' album.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="album_id" value="{{ album.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+
+                            <!-- Favorite Album -->
+                            <a href="#" class="btn btn-default btn-sm btn-favorite" role="button">
+                                <span class="glyphicon glyphicon-star"></span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+            {% endfor %}
+        {% else %}
+            <div class="col-sm-12">
+                <br>
+                <a href="#">
+                    <button type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add an Album
+                    </button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
+

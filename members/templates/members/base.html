@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Gym{% endblock %}</title>
+    <!-- load the path to your static files (it will just load the path to our static files) will not load all the static files -->
+    {% load staticfiles %}
+
+    <!-- include bootstrap via cdn -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+    <!-- google font named Satisfy -->
+    <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
+
+    <!-- used to include a particular file -->
+    <link rel="stylesheet" type="text/css" href="{% static 'members/style.css' %}"/>
+
+    <!-- Jquery files included -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <!-- botstrap java script -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<!-- bootstrap classes to make a navbar -->
+<!--<nav class="navbar navbar-default">-->
+<nav class="navbar navbar-inverse">
+    
+
+        <!-- Items  id same as target declared in toggle button-->
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav">
+                <li class="">
+                    <a href="{% url 'members:allMembers' %}">
+                        <span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp Members
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'members:feeDetail' %}">
+                        <span class="glyphicon glyphicon-music" aria-hidden="true"></span>&nbsp FeeStructure
+                    </a>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search" method="GET" action="{% url 'members:member-search' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="q" value='{{ request.GET.q}}' placeholder="Search Name or Date">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+
+            <!-- right navbar items -->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active">
+                    <a href="{% url 'members:feeDetails-add' %}">
+                        <span class="glyphicon glyphicon-plus"></span> Add Fee Details
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{% url 'members:batch-add' %}">
+                        <span class="glyphicon glyphicon-plus"></span> Add Batch
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{% url 'members:member-add' %}">
+                        <span class="glyphicon glyphicon-plus"></span> Add Member
+                    </a>
+                </li>
+
+                <li class="active">
+                    <a href="{% url 'logout' %}">
+                        <span class="glyphicon glyphicon-off"></span> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- new content to be added in the page who wver extends it -->
+
+
+
+{% block body %}
+<!--This section looks at what we can do to selectively control content the user sees based on whether they are logged in or not.-->
+
+
+
+{% endblock %}
+
+</body>
+</html>

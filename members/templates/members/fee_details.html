@@ -1,0 +1,23 @@
+{% extends "members/base.html" %}
+{% block title %}
+    Gym Fees
+{% endblock %}
+{% block body %}
+
+    {% if all_fees %}
+        <h3>Here are all the Fee Details From Starting </h3>
+        <ul>
+            {% for fee in all_fees %}
+            <h1>Fee Details Added on:{{fee.fee_update_date}}</h1>
+            <h3>Monthly Fee:{{fee.monthly_fee}}</h3>
+            <h3>Quater Fee:{{fee.quater_fee}}</h3>
+            <h3>Half Year Fee:{{fee.half_fee}}</h3>
+            <h3>Year Fee:{{fee.year_fee}}</h3>
+            {% endfor %}
+
+        </ul>
+    {% else %}
+        <h3>You dont have any Fee details added yet for the gym</h3>
+    {% endif %}
+
+{% endblock %}

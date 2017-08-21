@@ -1,0 +1,40 @@
+{% extends "members/base.html" %}
+{% block title %}
+    batch Details
+{% endblock %}
+{% block body %}
+
+
+
+
+    <h1>{{ batch.batch_title }}</h1>
+    <h2>{{ batch.strength }}</h2>
+    <h3>{{ batch.batch_time }}</h3>
+    <h3>No of members in Batch is {{ batch.count }}</h3>
+    <!-- in place of this unordered list place detils.txt data for favorite functionality -->
+    <ul>
+        {% if batch.member_set.all %}
+
+            <!-- usedd to fetch song corresponding to a particular batch(foreign key),batch.song_set.all-->
+            {% for member in batch.member_set.all %}
+                <li>
+                    <h>{{ member.id }}</h>
+                    <a href="{% url 'members:memberDetail' member.id %}"><h4><b>{{ member.member_name }}</b></a>
+                    <h4><b>{{ member.member_age }}</b></h4>
+                    <h4><b>{{ member.member_email }}</b></h4>
+                    <h4><b>{{ member.member_date }}</b></h4>
+                    <h4><b>{{ member.member_pic }}</b></h4>
+
+                </li>
+            {% endfor %}
+        {% else %}
+            <h4>Sorry There is no member in this batch</h4>
+        {% endif %}
+
+    </ul>
+
+
+
+
+{% endblock %}
+

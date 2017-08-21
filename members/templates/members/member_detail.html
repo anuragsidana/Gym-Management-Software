@@ -1,0 +1,41 @@
+{% extends "members/base.html" %}
+{% block title %}
+    Member Details
+{% endblock %}
+{% block body %}
+    <h3>{{ member.member_name }}    </h3>
+    <h3>{{ member.member_email }}    </h3>
+    <h3>{{ member.member_age }}    </h3>
+    <h3>{{ member.member_date }}    </h3>
+     <h3>{{ member.member_packageType }}</h3>
+     <h3>{{ member.member_discount }}    </h3>
+     <h3>Total Fee:{{  member.getFee }} </h3>
+    <h3> {{ member.member_date.year }}</h3>
+      <h3> {{ member.member_date.month }}</h3>
+      <h3> {{ member.member_date.day }}</h3>
+<h3>Member Pic Url is{{member.member_pic.url}} </h3>
+    <h3>{{ current_date.year }}</h3>
+<h3>Fee Submitted till now is {{ member.member_fee_deposit }}</h3>
+<h3>Fee Remaining {{ member.member_fee_remaining }}</h3>
+
+
+
+    <ul>
+        {% if member.fee_set.all %}
+
+            <!-- usedd to fetch song corresponding to a particular batch(foreign key),batch.song_set.all-->
+            {% for fee in member.fee_set.all %}
+                <li>
+                    <h6>fee month :{{ fee.fee_month }} - fee amount :{{ fee.fee_amount }}</h6>
+
+                </li>
+            {% endfor %}
+        {% else %}
+            <h4>Sorry There is no fee details for this member</h4>
+        {% endif %}
+
+    </ul>
+
+
+
+{% endblock %}
