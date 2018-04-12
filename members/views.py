@@ -8,6 +8,23 @@ from .models import Batch, Member, FeeDetails, Fee
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class IndexView(LoginRequiredMixin, generic.ListView):
     # You can also specify an alternative location to redirect the user to if they are not authenticated (login_url),
     # and a URL parameter name instead of "next" to insert the current absolute path (redirect_field_name).
@@ -53,7 +70,7 @@ class MemDetailView(LoginRequiredMixin, generic.DetailView):
 
 # a view for the fee details of the gym
 class FeeDetailsListView(LoginRequiredMixin, generic.ListView):
-    # name of template which is to be visited
+    # name of template which is to arbe visited
     template_name = 'members/fee_details.html'
     # returned object stored in this  'by default its object_list'
     context_object_name = 'all_fees'
@@ -315,3 +332,16 @@ class MonthlyRevenue(LoginRequiredMixin, generic.ListView):
         context['all_members'] = self.all_mem
         context['count'] = self.count
         return context
+
+
+
+
+
+
+
+from django.http import HttpResponse
+
+class HttpResponseNoContent(HttpResponse):
+    status_code = 404
+def my_view(request):
+    return HttpResponseNoContent()

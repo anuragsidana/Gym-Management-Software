@@ -37,4 +37,7 @@ urlpatterns = [
 
     # url for monthly revenue
     url(r'^revenue/monthly/(?P<id>[0-9]+)/$',views.MonthlyRevenue.as_view(),name='monthly-revenue'),
+
+    url(r'^nopage/',views.my_view,name="no_content")
+
 ]

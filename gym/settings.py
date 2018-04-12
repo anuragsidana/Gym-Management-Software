@@ -47,6 +47,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'members.middleware.TestMiddleWare',
 ]
 
 ROOT_URLCONF = 'gym.urls'
@@ -126,3 +127,25 @@ LOGIN_REDIRECT_URL = '/'
 # To allow testing, put the following line at the end of your settings.py file.
 #  This logs any emails sent to the console (so you can copy the password reset link from the console).
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'members/d.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
+
+
